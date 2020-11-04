@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Map from './components/Map';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const [casesByCounty, setCasesByCounty] = useState({});
+
+    useEffect(() => {
+        const fetchCases = async () => {
+            const { data } = await axios.get('https://www.trackcorona.live/api/cities', {});
+            const usCases = Object.values(data.data).filter(country => country.country_code === 'us')
+            // console.log(usCases);
+            setCasesByCounty(usCases);
+        };
+
+        fetchCases();
+    }, [])
+
+    console.log(casesByCounty);
+
+    return (
+        <div>
+            <Map/>
+        </div>
+    )
 }
 
-export default App;
+export default App
