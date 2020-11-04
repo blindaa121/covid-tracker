@@ -3,24 +3,24 @@ import Map from './components/Map';
 import axios from 'axios';
 
 const App = () => {
-    const [casesByCounty, setCasesByCounty] = useState({});
+    const [casesByCounty, setCasesByCounty] = useState(null);
 
     useEffect(() => {
         const fetchCases = async () => {
-            const { data } = await axios.get('https://www.trackcorona.live/api/cities', {});
-            const usCases = Object.values(data.data).filter(country => country.country_code === 'us')
-            // console.log(usCases);
+            const { data } = await axios.get('https://www.trackcorona.live/api/provinces', {});
+            const usCases = Object.values(data.data).filter(country => country.country_code === 'us');
+            
             setCasesByCounty(usCases);
         };
 
         fetchCases();
     }, [])
 
-    console.log(casesByCounty);
-
+    // console.log(casesByCounty);
     return (
-        <div>
-            <Map/>
+        <div className="app__container">
+            <header>COVID Tracker</header>
+            <Map casesByCounty={casesByCounty}/>
         </div>
     )
 }
