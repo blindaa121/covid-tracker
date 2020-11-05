@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Map from './components/Map';
 import axios from 'axios';
+import './App.css'
 
 const App = () => {
     const [casesByState, setCasesByState] = useState(null);

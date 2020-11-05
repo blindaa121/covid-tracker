@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import './Map.css'
 
 const Map = ({ casesByCounty, casesByState }) => {
     const [viewport, setViewport] = useState({
-        width: '100vw',
-        height: '100vh',
-        latitude: 39.220,
-        longitude: -95.997,
-        zoom: 8
+        width: '60vw',
+        height: '60vh',
+        latitude: 38.5148,
+        longitude: -94.9989,
+        zoom: 3.538
     });
-
 
     const [latlng, setLatLng] = useState({
         latitude: viewport.latitude,
         longitude: viewport.longitude
     })
 
-    const [radius, setRadius] = useState(3);
-
+    const [radius, setRadius] = useState(0);
+    const [selectedCase, setSelectedCase] = useState(null);
     
     const renderCountyCases = casesByCounty ? casesByCounty.map(county => {
         return (
@@ -25,13 +25,19 @@ const Map = ({ casesByCounty, casesByState }) => {
                 longitude={county.longitude}
                 latitude={county.latitude}
             >
-                <div style={{color: 'white'}}>You are here</div>
-                Cases: {county.confirmed}
-                <br/>
-                Deaths: {county.dead}
+                <button className="marker__button"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setSelectedCase(county);
+                        }}>
+                    <img src="/coronavirus.png" alt="" style={{width: '35px'}}/>
+                </button>
             </Marker>
         )
     }) : null;
+
+
+    console.log(selectedCase);
 
     const renderStateCases = casesByState ? casesByState.map(state => {
         return (
@@ -39,10 +45,13 @@ const Map = ({ casesByCounty, casesByState }) => {
                 longitude={state.longitude}
                 latitude={state.latitude}
             >
-                <div style={{color: 'white'}}>You are here</div>
-                Cases: {state.confirmed}
-                <br/>
-                Deaths: {state.dead}
+                <button className="marker__button"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setSelectedCase(state);
+                        }}>
+                    <img src="/coronavirus.png" alt="" style={{width: '35px'}}/>
+                </button>
             </Marker>
         )
     }) : null;
@@ -57,7 +66,7 @@ const Map = ({ casesByCounty, casesByState }) => {
     
     // console.log(casesByCounty);
     console.log(latlng);
-
+    console.log(viewport);
     return (
         <div className="map__container">
             <ReactMapGL
@@ -65,8 +74,9 @@ const Map = ({ casesByCounty, casesByState }) => {
                 onViewportChange={nextViewport => setViewport(nextViewport)}
                 mapStyle="mapbox://styles/blindaa121/ckh2v2irb21al19nwx9v25txy"
                 mapboxApiAccessToken='pk.eyJ1IjoiYmxpbmRhYTEyMSIsImEiOiJja2gyc2M2NDgwMWx2MnpxbDgyazZxZTRhIn0.QRPXzt2YtFZ2rLKEuuF-0Q'
-                onClick={onClickMap}>
-                {renderStateCases}
+                onClick={onClickMap}
+                style={{borderRadius: '10px'}}>
+                {viewport.zoom > 7.5 ? renderCountyCases : renderStateCases}
             </ReactMapGL>
         </div>
     );
