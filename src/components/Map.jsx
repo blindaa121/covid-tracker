@@ -20,6 +20,7 @@ const Map = ({ casesByCounty, casesByState }) => {
     const [selectedCase, setSelectedCase] = useState(null);
     
     const renderCountyCases = casesByCounty ? casesByCounty.map(county => {
+        // console.log('county cases rendered')
         return (
             <Marker
                 longitude={county.longitude}
@@ -37,9 +38,10 @@ const Map = ({ casesByCounty, casesByState }) => {
     }) : null;
 
 
-    console.log(selectedCase);
+    // console.log(selectedCase);
 
     const renderStateCases = casesByState ? casesByState.map(state => {
+        // console.log('statecases render')
         return (
             <Marker
                 longitude={state.longitude}
@@ -56,6 +58,29 @@ const Map = ({ casesByCounty, casesByState }) => {
         )
     }) : null;
 
+    const renderPopUp = () => {
+        if (selectedCase) {
+            return (
+                <Popup
+                    latitude={selectedCase.latitude}
+                    longitude={selectedCase.longitude}
+                    closeButton={true}
+                    closeOnClick={false}
+                    onClose={() => setSelectedCase(null)}
+                    >
+                    <div className="popup__container">
+                        <h1>{selectedCase.location}</h1>
+                        <span>Number of Cases: {selectedCase.confirmed}</span>
+                        <span>Deaths: {selectedCase.dead}</span>
+                    </div>
+                </Popup>
+            )
+        } else {
+            return null
+        }
+    }
+    
+    console.log(selectedCase)
     const onClickMap = (e) => {
         // console.log(e.lngLat);
         setLatLng({
@@ -65,7 +90,7 @@ const Map = ({ casesByCounty, casesByState }) => {
     }
     
     // console.log(casesByCounty);
-    console.log(latlng);
+    // console.log(latlng);
     console.log(viewport);
     return (
         <div className="map__container">
@@ -76,7 +101,8 @@ const Map = ({ casesByCounty, casesByState }) => {
                 mapboxApiAccessToken='pk.eyJ1IjoiYmxpbmRhYTEyMSIsImEiOiJja2gyc2M2NDgwMWx2MnpxbDgyazZxZTRhIn0.QRPXzt2YtFZ2rLKEuuF-0Q'
                 onClick={onClickMap}
                 style={{borderRadius: '10px'}}>
-                {viewport.zoom > 7.5 ? renderCountyCases : renderStateCases}
+                {viewport.zoom > 6 ? renderCountyCases : renderStateCases}
+                {renderPopUp()}
             </ReactMapGL>
         </div>
     );

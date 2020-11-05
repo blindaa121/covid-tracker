@@ -12,3 +12,8 @@
 .marker__button:hover {
     cursor: pointer;
 }
+
+.popup__container {
+    display: flex;
+    flex-direction: column;
+}
