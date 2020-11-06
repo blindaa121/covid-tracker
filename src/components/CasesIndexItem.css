@@ -1,0 +1,18 @@
+.case__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid white;
+}
+
+.case__item__info__container {
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+}
+
+.case__info {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}
+

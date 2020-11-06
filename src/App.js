@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Map from './components/Map';
+import RadiusSelector from './components/RadiusSelector';
+import CasesIndex from './components/CasesIndex';
 import axios from 'axios';
 import './App.css'
+
 
 const App = () => {
     const [casesByState, setCasesByState] = useState(null);
@@ -29,8 +32,9 @@ const App = () => {
     // console.log(casesByState);
     return (
         <div className="app__container">
-            <header>COVID Tracker</header>
+            <RadiusSelector setCasesByState={setCasesByState} setCasesByCounty={setCasesByCounty}/>
             <Map casesByState={casesByState} casesByCounty={casesByCounty}/>
+            <CasesIndex casesByState={casesByState} casesByCounty={casesByCounty} />
         </div>
     )
 }

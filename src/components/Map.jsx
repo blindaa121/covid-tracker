@@ -80,7 +80,7 @@ const Map = ({ casesByCounty, casesByState }) => {
         }
     }
     
-    console.log(selectedCase)
+    // console.log(selectedCase)
     const onClickMap = (e) => {
         // console.log(e.lngLat);
         setLatLng({
@@ -91,7 +91,7 @@ const Map = ({ casesByCounty, casesByState }) => {
     
     // console.log(casesByCounty);
     // console.log(latlng);
-    console.log(viewport);
+    // console.log(viewport);
     return (
         <div className="map__container">
             <ReactMapGL
