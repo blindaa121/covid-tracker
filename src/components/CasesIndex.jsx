@@ -29,6 +29,10 @@ const CasesIndex = ({ casesByCounty, casesByState }) => {
             <div className="cases__index">
                 { caseType === 'state' ? renderStateCases() : renderCountyCases()}
             </div>
+            <div className="cases__selection">
+                <span className="selection__button state" onClick={(e) => setCaseType('state')}>State</span>
+                <span className="selection__button county" onClick={(e) => setCaseType('county')}>County</span>
+            </div>
         </div>
     )
 }

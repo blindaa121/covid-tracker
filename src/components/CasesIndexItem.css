@@ -3,6 +3,8 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
 }
 
 .case__item__info__container {
@@ -14,5 +16,17 @@
 .case__info {
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
+}
+
+.case_count {
+    color: #FB9637
+}
+
+.case_death {
+    color: #FD4521
+}
+
+#county__header {
+    font-size: 15px !important;
 }
 

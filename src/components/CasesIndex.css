@@ -6,12 +6,53 @@
     color: white;
     width: 400px;
     height: 750px;
-    border-radius: 30px;
+    border-radius: 20px;
+    /* border: 3px solid white; */
 }
 
 .cases__index {
     overflow: auto;
     width: 85%;
+}
+
+.cases__selection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 45%;
+}
+
+.selection__button {
+    color: white;
+    font-size: 30px;
+}
+
+.state {
+    border-right: 1.5px solid white;
+    padding-right: 30px;
+    transition: 500ms;
+}
+
+.county {
+    padding-left: 30px;
+    transition: 500ms;
+}
+
+.state:hover {
+    color: #95DE68
+}
+
+.county:hover {
+    color: #FBB84B
+}
+
+.selection__button:focus {
+    outline: none;
+}
+
+.selection__button:hover {
+    cursor: pointer;
 }
 
 ::-webkit-scrollbar {

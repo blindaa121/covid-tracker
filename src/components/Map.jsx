@@ -97,7 +97,8 @@ const Map = ({ casesByCounty, casesByState }) => {
             <ReactMapGL
                 {...viewport}
                 onViewportChange={nextViewport => setViewport(nextViewport)}
-                mapStyle="mapbox://styles/blindaa121/ckh2v2irb21al19nwx9v25txy"
+                // mapStyle="mapbox://styles/blindaa121/ckh2v2irb21al19nwx9v25txy" dark
+                mapStyle="mapbox://styles/blindaa121/ckh5v33u30mnt19plc9pe4b3x"
                 mapboxApiAccessToken='pk.eyJ1IjoiYmxpbmRhYTEyMSIsImEiOiJja2gyc2M2NDgwMWx2MnpxbDgyazZxZTRhIn0.QRPXzt2YtFZ2rLKEuuF-0Q'
                 onClick={onClickMap}
                 style={{borderRadius: '10px'}}>

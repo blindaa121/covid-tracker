@@ -7,7 +7,7 @@ const CasesIndexItem = ({ countyCase, stateCase }) => {
     return (
         <div className="case__item">
             <div className="case__item__location">
-                <h1 className="case__item__header">{currentCase.location}</h1>
+                <h1 id={currentCase === countyCase ? 'county__header' : ''} className="case__item__header">{currentCase.location}</h1>
             </div>
             <div className="case__item__info__container">
                 <div>

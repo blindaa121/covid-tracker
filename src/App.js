@@ -32,8 +32,11 @@ const App = () => {
     // console.log(casesByState);
     return (
         <div className="app__container">
-            <RadiusSelector setCasesByState={setCasesByState} setCasesByCounty={setCasesByCounty}/>
-            <Map casesByState={casesByState} casesByCounty={casesByCounty}/>
+            {/* <RadiusSelector setCasesByState={setCasesByState} setCasesByCounty={setCasesByCounty}/> */}
+            <div className="app__container__header">
+                <h1>  COVID Tracker</h1>
+                <Map casesByState={casesByState} casesByCounty={casesByCounty}/>
+            </div>
             <CasesIndex casesByState={casesByState} casesByCounty={casesByCounty} />
         </div>
     )
